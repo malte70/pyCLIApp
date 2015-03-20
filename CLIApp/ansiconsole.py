@@ -92,7 +92,7 @@ class ANSIConsole(object):
         self.escape("H")
         self.escape("2J")
         
-    def getColor(color_name):
+    def getColor(self, color_name):
         try:
             return ANSIColor(
                     color_name,
@@ -102,7 +102,7 @@ class ANSIConsole(object):
             return None
         
     def setForegroundColor(self, color):
-        self.escape(c.getCode())
+        self.escape(color.getCode())
         
     def setAttribute(self, attribute):
         try:
