@@ -48,8 +48,10 @@ def main():
             self.action_default(False)
 
         def action_unknown(self):
+            self.c.setForegroundColor(self.c.getColor("RED"))
             self.c.writeln("Unknown action: "+self._action)
             self.setExitCode(1)
+            self.c.setAttribute("RESET")
             
     my_app = MyCLIApp()
     my_app.run()
