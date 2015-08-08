@@ -12,7 +12,7 @@ setup(
 		description  = "Utility classes for command line applications",
 		author       = "Malte Bublitz",
 		author_email = "malte70@mcbx.de",
-		url          = "http://malte-bublitz.de/python",
+		url          = "https://github.com/malte70/pyCLIApp",
 		license      = "License :: OSI Approved :: BSD License",
 		packages     = ["CLIApp"]
 	)
