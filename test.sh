@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 CUSTOM_PYTHON="yes"
 [[ -z $PYTHON ]] && CUSTOM_PYTHON="no"
