@@ -32,10 +32,8 @@
 import sys
 from CLIApp.ansiconsole import ANSIColor, ANSIConsole
 
-class CLIApp(object):
+class SimpleCLIApp(object):
     _options = []
-    _action = ""
-    _action_options = []
     _arguments = []
     _exitcode = 0
     c = None
@@ -45,59 +43,29 @@ class CLIApp(object):
         self.parseArgs()
         
     def parseArgs(self):
-        argModeIsGlobal = True
         if len(sys.argv) > 1:
-            for arg in sys.argv[1:]:
-                if arg == "--":
-                    return
-                if argModeIsGlobal:
-                    if arg[0:1] == "-":
-                        self._options.append(arg)
-                    else:
-                        argModeIsGlobal = False
-                        self._action = arg
-                else:
-                    if arg[0:1] == "-":
-                        self._action_options.append(arg)
-                    else:
-                        self._arguments.append(arg)
-        
+            for i, arg in enumerate(sys.argv[1:]):
+                if len(arg) > 2 and arg[0:2] == "--":
+                    self.options.append(arg)
+                elif arg[0:1] == "-":
+                    self.options.append(arg)
+                elif self.options[-1:][0] == "-":
+                    self.options[len(self.options)-1] += "=" + arg
     def setExitCode(self, code):
         self._exitcode = code
         
     def run(self):
-        if len(self._action) == 0:
-            self._action = "default"
-        try:
-            action = self.__getattribute__("action_"+self._action)
-        except AttributeError:
-            action = self.__getattribute__(self._action_unknown)
-
-        return action()
+        return True
         
     def exit(self):
         sys.exit(self._exitcode)
         
 def main():
-    class MyCLIApp(CLIApp):
-        _action_unknown = "action_unknown"
-        def action_default(self, isDirect=True):
-            if isDirect:
-                self.c.writeln("Default action")
-            self.c.writeln("Global options: "+str(self._options))
-            self.c.writeln("Action        : "+str(self._action))
-            self.c.writeln("Action options: "+str(self._action_options))
-            self.c.writeln("Arguments     : "+str(self._arguments))
-
-        def action_test(self):
-            self.c.writeln("Test action")
-            self.action_default(False)
-
-        def action_unknown(self):
-            self.c.setForegroundColor(self.c.getColor("RED"))
-            self.c.writeln("Unknown action: "+self._action)
-            self.setExitCode(1)
-            self.c.setAttribute("RESET")
+    class MyCLIApp(SimpleCLIApp):
+        def run(self):
+            self.c.writeln("Options:")
+            for option in self._options:
+                self.c.writeln("\t" + option)
             
     my_app = MyCLIApp()
     my_app.run()

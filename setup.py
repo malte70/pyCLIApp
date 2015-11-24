@@ -8,7 +8,7 @@ from distutils.core import setup
 
 setup(
 		name         = "cliapp",
-		version      = "0.1",
+		version      = "0.2",
 		description  = "Utility classes for command line applications",
 		author       = "Malte Bublitz",
 		author_email = "malte70@mcbx.de",

@@ -29,6 +29,11 @@
 # POSSIBILITY OF SUCH DAMAGE.
 # 
 
+__doc__ = """
+Command Line Application
+
+"""
+
 from CLIApp.ansiconsole import *
 from CLIApp.app import *
 
