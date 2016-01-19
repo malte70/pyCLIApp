@@ -46,11 +46,15 @@ class SimpleCLIApp(object):
         if len(sys.argv) > 1:
             for i, arg in enumerate(sys.argv[1:]):
                 if len(arg) > 2 and arg[0:2] == "--":
-                    self.options.append(arg)
+                    self._options.append(arg)
+                elif arg == "--":
+                    self._arguments += sys.argv[i:]
+                    break
                 elif arg[0:1] == "-":
-                    self.options.append(arg)
-                elif self.options[-1:][0] == "-":
-                    self.options[len(self.options)-1] += "=" + arg
+                    self._options.append(arg)
+                else:
+                    self._arguments.append(arg)
+                
     def setExitCode(self, code):
         self._exitcode = code
         
