@@ -117,6 +117,12 @@ class ANSIConsole(object):
     def writeln(self, _string):
         self.STDOUT.write(_string+"\n")
         
+    def write_err(self, _string):
+        self.STDERR.write(_string)
+        
+    def writeln_err(self, _string):
+        self.STDERR.write(_string+"\n")
+        
     def readLine(self):
         return input()
         
