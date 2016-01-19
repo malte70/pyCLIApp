@@ -36,6 +36,7 @@ Command Line Application
 
 from CLIApp.ansiconsole import *
 from CLIApp.app import *
+from CLIApp.simple_app import *
 
 def main():
     class MyCLIApp(CLIApp):
