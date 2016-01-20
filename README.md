@@ -14,8 +14,6 @@ After that, you can run setup.py to install:
 ## Example
 
 ```python
-# -*- coding: utf-8 -*-
-
 from CLIApp.simple_app import SimpleCLIApp
 
 APP_NAME       = "Hello World Example"
