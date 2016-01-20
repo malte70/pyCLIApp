@@ -23,7 +23,6 @@ APP_VERSION    = "0.1"
 APP_EXECUTABLE = "example"
 
 class HelloWorldApp(SimpleCLIApp):
-	c = None
 	def _version(self):
 		self.c.writeln(APP_NAME + " " + APP_VERSION)
 		
