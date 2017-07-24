@@ -1,5 +1,10 @@
+# 
+# .gitignore
+# 
 *.py[oc]
 __pycache__
 .*.swp
 .*.swo
 build/
+dist/
+
